@@ -9,16 +9,40 @@
 
 class Beers_model extends CI_Model {
 
+	// grab beer info from database
 	function get_beers()
 	{
-	
 		$this->db->select('*');
 		$this->db->from('beers');
 		$this->db->join('brewery', 'brewery.br_id = beers.brewery');
-	
-	
+		$this->db->join('categories', 'categories.cat_id = beers.category', 'right');
+		$this->db->order_by('categories.parent_id'); 
 
 		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_beers_by_cat()
+	{
+
+
+		$query = $this->db->query('SELECT * 
+			FROM (
+
+			SELECT c . * , COALESCE( NULLIF( c.parent_id, 0 ) , c.cat_id ) AS groupID, 
+			CASE WHEN c.parent_id =0
+			THEN 1 
+			ELSE 0 
+			END AS isparent, 
+			CASE WHEN p.parent_id =0
+			THEN c.cat_id
+			END AS orderbyint
+			FROM categories c
+			LEFT JOIN categories p ON p.cat_id = c.parent_id
+			)c
+			LEFT JOIN beers b ON b.category = c.cat_id
+			LEFT JOIN brewery br ON br_id = b.brewery
+			ORDER BY groupID, isparent DESC , orderbyint, cat_name, b.name DESC');
 		return $query->result();
 	}
 /*
