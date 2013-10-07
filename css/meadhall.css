@@ -1,0 +1,160 @@
+body {
+	background:#231f20;
+	height:100%;
+	margin:0px;
+	overflow: -moz-scrollbars-vertical;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+html {
+	height:100%;
+}
+
+a {
+	text-decoration:none;
+	color:white;
+}
+
+#big_container {
+	width:100%;
+	height:100%;
+	margin-left:0px;
+}
+
+#spacer {
+	background: #ffad25;
+	width:100%;
+	height:10px;
+	position:relative;
+	z-index:10;
+}
+
+#top {
+	background: #4b4245;
+	width:100%;
+	height:140px;
+	position:relative;
+	z-index:10;
+}
+
+.info {
+	font-weight:400;
+	font-size:14px;
+	color:White;
+	font-family: 'Muli', arial, serif;
+	text-align:left;
+}
+
+#top_info {
+	position:relative;
+	top:10px;
+	left:10px;
+}
+
+#menu {
+	height:160px;
+	width:700px;
+	margin-top:-150px;
+	margin-right:auto;
+	margin-left:auto;
+	overflow:hidden;
+}
+
+.nav {
+	float:left;
+	width:140px;
+	height:40px;
+	text-align:center;
+	font-family: 'Muli', arial, serif;
+	font-size:30px;
+	padding-top:90px;
+	position:relative;
+	top:0px;
+}
+
+.nav:hover {
+	border-bottom:10px solid #ffad25;
+	background:#231f20;
+}
+
+#logo {
+	position:absolute;
+	right:5px;
+	top:15px;
+	z-index:10;
+	border:5px solid #4b4245;
+}
+
+#information {
+	width:150px;
+	height:150px;
+	line-height:20px;
+}
+
+#sidebar {
+	float:left;
+	background-color:#4b4245;
+	background-image:url('key.jpg');
+	background-attachment:fixed;
+	background-position:center bottom !;
+	background-repeat:no-repeat;
+	width:150px;
+	height:100%;
+}
+
+#banner {
+	position:relative;
+	z-index:10;
+}
+
+#key {
+	position:fixed;
+	bottom:-40px;
+	z-index:5;
+}
+
+.photo {
+	position:absolute;
+	right:0px;
+	top:150px;
+	z-index:-10;
+}
+
+#content {
+	color:#e8e8e8;
+	width:60%;
+	height:auto;
+	font-family: 'Mako', arial, serif;
+	position:absolute;
+	top:475px;
+	left:150px;
+}
+
+#content p {
+	padding-left:20px;
+}
+
+#title {
+	font-size:30px;
+}
+
+#text {
+	font-size:14px;
+}
+
+#footer {
+	position:absolute;
+	bottom:-499px;
+	left:0px;
+	width:150px;
+	text-align:center;
+}
+
+.beers-list {
+	margin-top:50px;
+	padding-left:50px
+}
+.beers-list h2 {
+	
+}
