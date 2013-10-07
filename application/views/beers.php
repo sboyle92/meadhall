@@ -81,10 +81,25 @@
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 		<?=date('F jS, Y');?>
 		<br/>
-		<?php
+		<?php 
+			$catName = '';
 			foreach($beers as $b) 
 			{
-				echo $b->name .' | '. $b->br_name  .' | '. $b->abv .'% | '. $b->description.'<br/>';
+				if($b->parent_id == 0)
+				{
+					echo '<h2>'.$b->cat_name .'</h2>';
+				} 
+					else 
+				{
+					if($catName =='' || $catName != $b->cat_name)
+					{	
+						$catName = $b->cat_name;
+						echo '<h3>'.$b->cat_name.'</h3>';
+						echo $b->parent_id .' | '.$b->name .' | '. $b->abv .'% | '. $b->description.' | '. $b->cat_name.'<br/>';
+					} else {
+						echo $b->parent_id .' | '.$b->name .' | '.$b->br_name.' | '. $b->abv .'% | '. $b->description.' | '. $b->cat_name.'<br/>';
+					}
+				}
 			}
 		?>
 	</div>
