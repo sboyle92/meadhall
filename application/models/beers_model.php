@@ -7,9 +7,17 @@
 *	Copyright © 2012 Shawn Boyle	*
 ************************************/ 
 
-class Beers_model extends CI_Model {
+class Beers_model extends MY_Model {
 
-	// grab beer info from database
+	// this is for using MY_Model
+	public function __construct()
+	{
+		parent::__construct();
+		$this->table_name = 'beers';
+	}
+		
+
+	/* grab beer info from database
 	function get_beers()
 	{
 		$this->db->select('*');
@@ -21,7 +29,7 @@ class Beers_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
-	
+	*/
 	function get_beers_by_cat()
 	{
 
@@ -45,6 +53,7 @@ class Beers_model extends CI_Model {
 			ORDER BY groupID, isparent DESC , orderbyint, cat_name, b.name DESC');
 		return $query->result();
 	}
+	
 /*
 	function validate()
 	{

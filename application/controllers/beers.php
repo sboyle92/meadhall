@@ -19,15 +19,10 @@ class Beers extends CI_Controller {
 	 */
 	public function index()
 	{
-		
-		
-		
 		$this->load->model('beers_model');
 		$data['beers'] = $this->beers_model->get_beers_by_cat();
 		
-		
-		$this->load->view('beers_view', $data);
-		
+		$this->load->view('beers_w_model', $data);
 		
 	}
 }
