@@ -22,7 +22,7 @@ class Beers extends CI_Controller {
 		$this->load->model('beers_model');
 		$data['beers'] = $this->beers_model->get_beers_by_cat();
 		
-		$this->load->view('beers_w_model', $data);
+		$this->load->view('beers_view_list', $data);
 		
 	}
 }

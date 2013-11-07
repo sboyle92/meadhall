@@ -13,7 +13,7 @@ class Beers_model extends MY_Model {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->table_name = 'beers';
+		$this->table_name = 'mBeers';
 	}
 		
 
@@ -36,6 +36,26 @@ class Beers_model extends MY_Model {
 
 		$query = $this->db->query('SELECT * 
 			FROM (
+			SELECT c . * , COALESCE( NULLIF( c.c_parent_id, 0 ) , c.c_id ) AS groupID, 
+			CASE WHEN c.c_parent_id =0
+			THEN 1 
+			ELSE 0 
+			END AS isparent, 
+			CASE WHEN p.c_parent_id =0
+			THEN c.c_id
+			END AS orderbyint
+			FROM mCategories c
+			LEFT JOIN mCategories p ON p.c_id = c.c_parent_id
+			)c
+			LEFT JOIN mBeers b ON b.b_category = c.c_id
+			LEFT JOIN mBrewery br ON br.br_id = b.br_id
+			ORDER BY groupID, isparent DESC , orderbyint, c_name, b.b_name DESC');
+		return $query->result();
+		
+		
+		/*
+		$query = $this->db->query('SELECT * 
+			FROM (
 
 			SELECT c . * , COALESCE( NULLIF( c.parent_id, 0 ) , c.cat_id ) AS groupID, 
 			CASE WHEN c.parent_id =0
@@ -52,6 +72,7 @@ class Beers_model extends MY_Model {
 			LEFT JOIN brewery br ON br_id = b.brewery
 			ORDER BY groupID, isparent DESC , orderbyint, cat_name, b.name DESC');
 		return $query->result();
+		*/
 	}
 	
 /*
